@@ -27,6 +27,8 @@ public class FilamentView extends FormLayout implements NotificationHelper, View
 
     private final ComboBox<Filament> filaments = new ComboBox<>("Filament");
     private final ColorField color = new ColorField("Custom Color");
+    private final IntegerField caliIDX = new IntegerField("Calibration ID");    
+    private final ComboBox<String> nozzles = new ComboBox<>("Nozzle diameter");
     private final IntegerField minTemp = new IntegerField("Min Temperature");
     private final IntegerField maxTemp = new IntegerField("Max Temperature");
 
@@ -66,6 +68,7 @@ public class FilamentView extends FormLayout implements NotificationHelper, View
 
             printer.commandFilamentSetting(amsId, trayId, filament, color.get(),
                     view.minTemp.getValue(), view.maxTemp.getValue());
+            printer.commandFilamentIDXSetting(amsId, trayId, filament, view.caliIDX.getValue(), view.nozzles.getValue());
             printer.commandFullStatus(true);
         });
 
@@ -108,6 +111,11 @@ public class FilamentView extends FormLayout implements NotificationHelper, View
         filaments.setItemLabelGenerator(Filament::getDescription);
         filaments.setItems(getFilaments());
 
+        caliIDX.setValue(-1);
+        nozzles.setItems("0.2","0.4","0.6","0.8");
+        nozzles.setValue("0.4");
+        nozzles.setAllowCustomValue(true);
+
         setTemp(minTemp);
         setTemp(maxTemp);
 
@@ -121,7 +129,7 @@ public class FilamentView extends FormLayout implements NotificationHelper, View
             maxTemp.setValue(parseInt(printerName, t.getNozzleTempMax(), 220));
         });
 
-        add(filaments, color, minTemp, maxTemp);
+        add(filaments, color, caliIDX, nozzles, minTemp, maxTemp);
         setColspan(color, 2);
 
         return this;

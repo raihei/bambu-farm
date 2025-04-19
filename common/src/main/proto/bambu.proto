@@ -247,6 +247,8 @@ message Print {
   optional int32 print_real_action = 94;
   optional Xcam xcam = 95;
   optional string xcam_status = 96;
+  optional int32 cali_idx = 97;
+  optional string filament_id = 98;
 }
 
 message System {

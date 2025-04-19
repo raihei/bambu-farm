@@ -356,6 +356,25 @@ public class BambuPrinterImpl implements BambuPrinter, Processor {
     }
 
     @Override
+    public void commandFilamentIDXSetting(final int amsId, final int trayId, final Filament filament, final int caliIDX, final String nozzleDiameter ) {
+        logUser("%s: commandFilamentIDXSetting ams[%d] tray[%d] filament[%s] caliIDX[%d] nozzleDiameter[%s]"
+                .formatted(name, amsId, trayId, filament, caliIDX, nozzleDiameter));
+        final BambuMessage message = BambuMessage.newBuilder()
+                .setPrint(
+                        com.tfyre.bambu.model.Print.newBuilder()
+                                .setSequenceId("%d".formatted(counter.incrementAndGet()))
+                                .setCommand("extrusion_cali_sel")
+                                .setAmsId(amsId)
+                                .setTrayId(trayId)
+                                .setFilamentId(filament.getCode())                                
+                                .setCaliIdx(caliIDX)
+                                .setNozzleDiameter(nozzleDiameter)
+                )
+                .build();
+        toJson(message).ifPresent(this::sendData);
+    }
+
+    @Override
     public void commandSystemReboot() {
         logUser("%s: commandSystemReboot".formatted(name));
         final BambuMessage message = BambuMessage.newBuilder()
