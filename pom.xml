@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tfyre.bambu</groupId>
     <artifactId>bambu-parent</artifactId>
-    <version>1.6.1</version>
+    <version>1.8.0</version>
     <packaging>pom</packaging>
     <modules>
         <module>common</module>
@@ -18,12 +18,12 @@
         <maven.deploy.skip>true</maven.deploy.skip>
 
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <vaadin.version>24.7.1</vaadin.version>
-        <quarkus.version>3.21.2</quarkus.version>
+        <vaadin.version>24.8.7</vaadin.version>
+        <quarkus.version>3.26.1</quarkus.version>
         <compiler-plugin.version>3.14.0</compiler-plugin.version>
         <jna.version>5.17.0</jna.version>
-        <commons-net.version>3.11.1</commons-net.version>
-        <jandex-maven-plugin.version>3.3.0</jandex-maven-plugin.version>
+        <commons-net.version>3.12.0</commons-net.version>
+        <jandex-maven-plugin.version>3.4.0</jandex-maven-plugin.version>
 
         <jaxb2-maven-plugin.version>3.3.0</jaxb2-maven-plugin.version>
         <jaxb-xjc.version>4.0.5</jaxb-xjc.version>
